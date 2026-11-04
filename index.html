@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SME – Supervision énergétique – Port d’Agadir</title>
+<style>
+:root{--bg:#050b17;--card:#0a1322;--bd:#16233a;--tx:#e6edf7;--mu:#8392a8;--em:#10b981;--cy:#22d3ee;--ye:#facc15;--re:#f87171;--mono:'JetBrains Mono',ui-monospace,Consolas,Menlo,monospace}
+*{box-sizing:border-box;margin:0;font-family:system-ui,'Segoe UI',Arial,sans-serif}
+body{background:var(--bg);color:var(--tx);padding-bottom:40px}
+.mono,.lb{font-family:var(--mono)}
+.top{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;padding:16px 28px;border-bottom:1px solid var(--bd)}
+.logo{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#10b981,#059669);display:grid;place-items:center;box-shadow:0 0 24px #10b98133}
+.logo svg{width:28px;height:28px}
+.ttl{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.ttl h1{font-size:1.35rem}
+.sub{color:var(--mu);font-size:.9rem;margin-top:3px}
+.pill{font-family:var(--mono);font-size:.72rem;padding:3px 10px;border-radius:14px;border:1px solid #10b98155;background:#10b98118;color:#34d399;font-weight:700;white-space:nowrap}
+.pill.y{border-color:#facc1555;background:#facc1518;color:var(--ye)}.pill.r{border-color:#f8717155;background:#f8717118;color:var(--re)}
+.mbar{display:flex;flex-wrap:wrap;gap:6px 22px;border:1px solid var(--bd);border-radius:14px;padding:10px 18px;font-family:var(--mono);font-size:.82rem;color:var(--mu);margin-left:auto}
+.mbar b{color:var(--cy);margin-left:6px}
+nav{display:flex;gap:6px;padding:14px 28px;border-bottom:1px solid var(--bd);overflow-x:auto}
+nav button{background:none;border:1px solid transparent;color:var(--tx);padding:9px 16px;border-radius:10px;cursor:pointer;font-size:.95rem;font-weight:600;white-space:nowrap}
+nav button.on{border-color:#10b98177;background:#10b98115;color:#34d399}
+main{padding:22px 28px;max-width:1500px;margin:auto}
+.grid{display:grid;gap:18px}.kpis{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.two{grid-template-columns:minmax(0,2fr) minmax(0,1fr);margin-top:18px}@media(max-width:900px){.two{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:22px;position:relative;overflow:hidden}
+.kpi::after{content:attr(data-ic);position:absolute;right:18px;top:10px;font-size:62px;opacity:.1}
+.lb{color:var(--mu);font-size:.82rem;letter-spacing:.03em}
+.big{font-family:var(--mono);font-size:2.6rem;font-weight:700;margin:10px 0 6px}.big small{font-size:1.1rem;margin-left:6px}
+.c1{color:#fff}.c2{color:var(--ye)}.c3{color:var(--cy)}.c4{color:#34d399}
+.hint{font-size:.9rem;color:var(--mu)}.hint b{color:#34d399}
+h2{font-size:1.2rem;margin-bottom:4px}
+.pgrid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));margin-top:18px}
+.pc{border:1px solid var(--bd);border-radius:14px;padding:16px;background:#080f1d}
+.pc .h{display:flex;justify-content:space-between;align-items:center}.pc .id{font-family:var(--mono);color:var(--cy);font-weight:700}
+.pc h3{font-size:1.02rem;margin:12px 0 2px}.pc p{font-size:.82rem;color:var(--mu)}
+.pc .r{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--bd);margin-top:14px;padding-top:12px;font-family:var(--mono);font-size:.82rem;color:var(--mu)}.pc .r b{color:#fff;font-size:1rem}
+.pc a{color:var(--cy);font-size:.82rem;cursor:pointer;float:right;margin-top:8px}
+.tools{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}select,input{padding:9px 12px;border:1px solid var(--bd);border-radius:10px;background:#080f1d;color:var(--tx)}
+.sc{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:.88rem}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--bd);white-space:nowrap}th{color:var(--mu);font-family:var(--mono);font-weight:600;font-size:.74rem;text-transform:uppercase}
+td.n{font-family:var(--mono)}
+.btn{border:1px solid var(--cy);background:none;color:var(--cy);border-radius:8px;padding:4px 11px;cursor:pointer;font-size:.8rem}
+.note{color:var(--mu);font-size:.8rem;margin-top:14px;line-height:1.5}
+.hide{display:none}svg{width:100%;height:auto;display:block}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div>
+  <div><div class="ttl"><h1>SME Agadir</h1><span class="pill">MONITORING v1.0</span><span class="pill" id="net">● RÉSEAU EN SERVICE</span></div>
+  <div class="sub">Supervision Postes Électriques • Marsa Maroc – Port d’Agadir (DEPA) • AOO 12/DEPA/2026</div></div>
+  <div class="mbar" id="mbar"></div>
+  <span class="pill y">DÉMO – DONNÉES SIMULÉES</span>
+</div>
+<nav id="nav">
+  <button data-t="dash" class="on">Vue Globale</button>
+  <button data-t="pts">Points de comptage</button>
+  <button data-t="alr">Alertes <span class="pill r" id="ac" style="padding:1px 8px"></span></button>
+  <button data-t="ipe">IPE &amp; SER</button>
+</nav>
+<main>
+<section id="dash">
+  <div class="grid kpis" id="kpis"></div>
+  <div class="grid two">
+    <div class="card"><h2>Architecture – Postes électriques</h2><div class="hint">Six postes du Port d’Agadir, comptage Modbus TCP/IP</div><div class="pgrid" id="pc"></div></div>
+    <div class="card"><div style="display:flex;justify-content:space-between"><h2>Courbe de Charge</h2><span class="lb" style="color:#34d399">Temps Réel</span></div><div class="hint">Puissance active totale sur 24 h (simulée)</div><div id="chart" style="margin-top:18px"></div></div>
+  </div>
+</section>
+<section id="pts" class="hide"><div class="card">
+  <div class="tools"><select id="fp"></select><input id="fs" placeholder="Rechercher un point…"></div>
+  <div class="sc"><table><thead><tr><th>Point</th><th>Poste</th><th>Classe</th><th>P (kW)</th><th>U (V)</th><th>I (A)</th><th>cos φ</th><th>Dernière lecture</th><th>État</th></tr></thead><tbody id="tb"></tbody></table></div></div></section>
+<section id="alr" class="hide"><div class="card"><h2 style="margin-bottom:12px">Alertes</h2><div class="sc"><table><thead><tr><th>Détectée</th><th>Point</th><th>Type</th><th>Priorité</th><th>Statut</th><th>Action</th></tr></thead><tbody id="ab"></tbody></table></div></div></section>
+<section id="ipe" class="hide"><div class="card"><h2 style="margin-bottom:12px">Situation Énergétique de Référence (SER) – exemple</h2><div class="sc"><table><thead><tr><th>Poste</th><th>Référence (kWh/j)</th><th>Observé (kWh/j)</th><th>Écart</th></tr></thead><tbody id="sb"></tbody></table></div>
+<p class="note">Exemple de démonstration. Les IPE officiels, la période de référence et les variables de normalisation (ISO 50001) sont à définir et valider avec la DEPA.</p></div></section>
+<p class="note">Prototype de présentation : postes PT Y, PT X, PT Z, PT 4, PT 1 (existant) et PT 7. Valeurs générées aléatoirement, aucune lecture réelle de compteur.</p>
+</main>
+<script>
+const f=(n,d=0)=>n.toLocaleString('fr-FR',{minimumFractionDigits:d,maximumFractionDigits:d});
+let seed=7;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+const POSTES=[['PT Y',12,0],['PT X',11,0],['PT Z',10,0],['PT 4',10,0],['PT 1',12,1],['PT 7',4,0]].map(([id,n,ex])=>({id,n,ex,k:0.6+rnd()*0.8}));
+const curve=h=>0.62+0.38*Math.sin((h-9)/24*2*Math.PI);
+const P=[];
+POSTES.forEach(po=>{for(let i=1;i<=po.n;i++){const tg=i<=2;
+  P.push({po:po.id,id:po.id+(tg?'-TGBT T'+i:'-Départ '+(i-2)),base:(tg?60+rnd()*60:4+rnd()*22)*po.k,cls:tg||rnd()<.6?'0,5S':'0,2S',cos:.86+rnd()*.12,st:'ok',lag:0});}});
+const find=(po,i)=>P.find(p=>p.id===po+'-Départ '+i);
+let q=find('PT 4',7);if(q){q.st='off';q.lag=185}
+q=find('PT X',5);if(q){q.st='st';q.lag=12}
+q=find('PT Z',3);if(q)q.cos=.78;
+const hr=()=>new Date().getHours()+new Date().getMinutes()/60;
+const live=p=>p.st==='off'?0:p.base*curve(hr())*(1+(rnd()-.5)*.06);
+const kwh=p=>{let s=0;for(let x=0;x<=new Date().getHours();x++)s+=p.base*curve(x);return p.st==='off'?s*.6:s};
+const sum=(a,fn)=>a.reduce((s,p)=>s+fn(p),0);
+const ALERTS=[];
+P.forEach(p=>{const t=new Date(Date.now()-(p.lag||5)*60000).toLocaleString('fr-FR');
+ if(p.st==='off')ALERTS.push({t,pt:p.id,ty:'Perte de communication > 15 min',pr:'Haute',s:'Nouvelle'});
+ if(p.st==='st')ALERTS.push({t,pt:p.id,ty:'Donnée ancienne (non temps réel)',pr:'Moyenne',s:'Nouvelle'});
+ if(p.cos<.85)ALERTS.push({t,pt:p.id,ty:'Facteur de puissance bas ('+f(p.cos,2)+')',pr:'Moyenne',s:'Nouvelle'});});
+function showTab(t,poste){[...nav.children].forEach(b=>b.classList.toggle('on',b.dataset.t===t));['dash','pts','alr','ipe'].forEach(id=>document.getElementById(id).classList.toggle('hide',id!==t));if(poste!==undefined){fp.value=poste;}render()}
+function render(){
+ const on=P.filter(p=>p.st!=='off'),tot=sum(P,live),en=sum(P,kwh),cm=sum(on,p=>p.cos)/on.length,open=ALERTS.filter(a=>a.s!=='Clôturée').length;
+ mbar.innerHTML=`<span>Charge :<b>${f(tot/1000,2)} MW</b></span><span>Énergie :<b>${f(en/1000,1)} MWh</b></span><span>Cos φ :<b>${f(cm,2)}</b></span><span>Points :<b>${on.length}/${P.length}</b></span><span>${new Date().toLocaleTimeString('fr-FR')}</span>`;
+ ac.textContent=open;ac.style.display=open?'':'none';
+ kpis.innerHTML=[
+  ['⚡','Puissance Active Appelée','c1',f(tot),'kW','<b>6 postes</b> supervisés'],
+  ['▮','Énergie Journalière','c3',f(en/1000,1),'MWh','cumul depuis 00h00'],
+  ['◔','Facteur de Puissance (cos φ)','c4',f(cm,2),'','moyenne des points en ligne'],
+  ['●','Disponibilité des Mesures','c2',f(on.length/P.length*100,1),'%',`${P.length-on.length} point(s) hors ligne · ${open} alerte(s)`]
+ ].map(k=>`<div class="card kpi" data-ic="${k[0]}"><div class="lb">${k[1]}</div><div class="big ${k[2]}">${k[3]}<small>${k[4]}</small></div><div class="hint">${k[5]}</div></div>`).join('');
+ pc.innerHTML=POSTES.map(o=>{const a=P.filter(p=>p.po===o.id),n=a.filter(p=>p.st!=='off').length,low=a.some(p=>p.cos<.85);
+  const [cl,tx]=n<a.length?['y','DÉGRADÉ']:low?['y','À SURVEILLER']:['','NORMAL'];
+  return `<div class="pc"><div class="h"><span class="id">${o.id}</span><span class="pill ${cl}">${tx}</span></div><h3>Poste électrique ${o.id}</h3><p>${o.ex?'Compteurs existants intégrés (Modbus)':'Nouveaux compteurs classe 0,5S / 0,2S'}</p><div class="r"><span>Puissance Active :</span><b>${f(sum(a,live))} kW</b></div><div class="r" style="border:0;margin:0;padding-top:4px"><span>${n}/${a.length} points en ligne</span></div><a onclick="showTab('pts','${o.id}')">Ouvrir détails →</a></div>`}).join('');
+ const ft=fp.value,fq=fs.value.toLowerCase();
+ tb.innerHTML=P.filter(p=>(!ft||p.po===ft)&&p.id.toLowerCase().includes(fq)).map(p=>{const pw=live(p),ii=pw*1000/(398*1.732*p.cos)||0,ts=new Date(Date.now()-p.lag*60000).toLocaleTimeString('fr-FR'),off=p.st==='off';
+  const st=p.st==='ok'?'<span class="pill">EN LIGNE</span>':p.st==='st'?'<span class="pill y">DONNÉE ANCIENNE</span>':'<span class="pill r">HORS LIGNE</span>';
+  return `<tr><td>${p.id}</td><td>${p.po}</td><td>${p.cls}</td><td class="n">${off?'–':f(pw,1)}</td><td class="n">${off?'–':f(398+(rnd()-.5)*6)}</td><td class="n">${off?'–':f(ii)}</td><td class="n">${off?'–':f(p.cos,2)}</td><td class="n">${ts}</td><td>${st}</td></tr>`}).join('');
+ sb.innerHTML=POSTES.map(o=>{const a=P.filter(p=>p.po===o.id),ob=sum(a,kwh),rf=sum(a,p=>{let s=0;for(let x=0;x<=new Date().getHours();x++)s+=p.base*curve(x);return s})*1.04,e=(ob/rf-1)*100;
+  return `<tr><td>${o.id}</td><td class="n">${f(rf)}</td><td class="n">${f(ob)}</td><td class="n" style="color:${e>3?'var(--re)':'#34d399'}">${e>0?'+':''}${f(e,1)} %</td></tr>`}).join('');
+}
+function drawChart(){const W=520,H=300,m=38,h=new Date().getHours(),pts=[];let mx=0;
+ for(let x=0;x<=23;x++){const v=sum(P,p=>p.st==='off'?0:p.base*curve(x));pts.push(v);mx=Math.max(mx,v)}
+ const X=x=>m+(W-m-10)*x/23,Y=v=>H-m-(H-2*m)*v/(mx*1.1),line=pts.map((v,x)=>X(x)+','+Y(v)).join(' ');
+ let s=`<svg viewBox="0 0 ${W} ${H}"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22d3ee" stop-opacity=".45"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/></linearGradient></defs>`;
+ for(let i=0;i<=4;i++){const y=H-m-(H-2*m)*i/4;s+=`<line x1="${m}" x2="${W-10}" y1="${y}" y2="${y}" stroke="#16233a"/><text x="${m-6}" y="${y+4}" text-anchor="end" font-size="10" fill="#8392a8">${f(mx*1.1*i/4)}</text>`}
+ for(let x=0;x<=23;x+=4)s+=`<text x="${X(x)}" y="${H-14}" text-anchor="middle" font-size="10" fill="#8392a8">${x}h</text>`;
+ s+=`<polygon fill="url(#g)" points="${X(0)},${H-m} ${line} ${X(23)},${H-m}"/><polyline fill="none" stroke="#22d3ee" stroke-width="2.5" points="${line}"/><circle cx="${X(h)}" cy="${Y(pts[h])}" r="5" fill="#34d399"/><text x="${W-10}" y="14" text-anchor="end" font-size="10" fill="#8392a8">kW</text></svg>`;chart.innerHTML=s}
+function drawAlerts(){ab.innerHTML=ALERTS.map((a,i)=>`<tr><td class="n">${a.t}</td><td>${a.pt}</td><td>${a.ty}</td><td><span class="pill ${a.pr==='Haute'?'r':'y'}">${a.pr.toUpperCase()}</span></td><td>${a.s}</td><td>${a.s==='Nouvelle'?`<button class="btn" onclick="ALERTS[${i}].s='Prise en charge';drawAlerts();render()">Prendre en charge</button>`:a.s==='Prise en charge'?`<button class="btn" onclick="ALERTS[${i}].s='Clôturée';drawAlerts();render()">Clôturer</button>`:'—'}</td></tr>`).join('')}
+fp.innerHTML='<option value="">Tous les postes</option>'+POSTES.map(o=>`<option>${o.id}</option>`).join('');
+fp.onchange=fs.oninput=render;
+nav.onclick=e=>{const t=e.target.closest('button')?.dataset.t;if(t)showTab(t)};
+render();drawChart();drawAlerts();setInterval(render,5000);
+</script>
+</body>
+</html>
